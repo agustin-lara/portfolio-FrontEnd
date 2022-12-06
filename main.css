@@ -12,3 +12,47 @@ html {
     scroll-behavior: smooth;
 }
 
+.container {
+    margin: 0 auto;
+    max-width: 1120px;
+    height: 100%;
+}
+
+.about-section {
+    background-color: #001A33;
+    /* background-image: url(img/portfolio-bg.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover; */
+    height: 100vh;
+    max-height: 1080px;
+}
+
+.about-container {
+    display: flex;
+    align-items: center;
+}
+
+.about {
+    margin: 32px;
+    max-width: 50%;
+}
+
+.about > * {
+    margin-bottom: 24px;
+}
+
+.about__greet, .about__description {
+    color: #ccc;
+    font-size: 22px;
+}
+
+.about__description {
+    line-height: 1.5em;
+}
+
+.about__title {
+    color: #fff;
+    font-weight: 700;
+    font-size: 60px;
+}
