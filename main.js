@@ -22,4 +22,18 @@ window.onload = () => {
     }
     window.addEventListener('scroll', reveal);
 
+    /*
+    ===========  |HEADER COLOR ON SCROLL|  ===========
+    ==================================================
+    */
+    const header = document.querySelector('.header');
+    const aboutSection = document.querySelector('.about-section');
+    window.addEventListener('scroll',function(){
+        if (window.scrollY > (aboutSection.clientHeight/5)) {
+            header.classList.add('header-dark');
+        } else {
+            header.classList.remove('header-dark');
+        }
+    });
+
 }
