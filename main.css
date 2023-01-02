@@ -44,6 +44,7 @@ html {
 .header {
     position: fixed;
     width: 100%;
+    z-index: 50;
     transition: background-color .25s;
 }
 
@@ -129,7 +130,58 @@ html {
     font-size: 60px;
 }
 
-.prueba {
-    height: 600px;
+/* ========== PROFILE========== */
+
+.profile-section {
+    height: fit-content;
     background-color: #eee;
+}
+
+.profile__elements {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 64px;
+    padding: 64px 32px;
+    text-align: center;
+}
+
+.profile__icon {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+
+.profile__description {
+    max-width: 50%;
+}
+
+/* ========== SKILLS========== */
+
+.line {
+    background-color: #eee;
+    
+}
+
+.inline {
+    height: 2px;
+    width: 75%;
+    background-color: #222;
+    margin: 0 auto;
+}
+
+.skills-section {
+    height: fit-content;
+    background-color: #eee;
+}
+
+.skills {
+    padding: 64px 32px;
+}
+
+.skills__title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #222;
 }
