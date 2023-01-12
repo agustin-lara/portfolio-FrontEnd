@@ -185,3 +185,40 @@ html {
     font-weight: bold;
     color: #222;
 }
+
+.skills__cards {
+    margin: 64px 0;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 32px;
+}
+
+.skills__card {
+    padding: 48px 16px;
+    background: linear-gradient(#001730,#002737);
+    display: grid;
+    grid-auto-rows: min-content;
+    row-gap: 32px;
+    max-width: 280px;
+    border-radius: 8px;
+}
+
+.card__icon {
+    margin: 32px auto;
+    fill: #ccc;
+    width: 64px;
+    height: 64px;
+}
+
+.card__title {
+    color: rgb(255, 209, 122);
+    font-weight: bold;
+    text-align: center;
+}
+
+.card__description {
+    margin: 0 24px;
+    color: #ccc;
+    text-align: center;
+}
