@@ -5,15 +5,6 @@
 * {
     font-family: 'Open Sans', sans-serif;
     font-weight: 500;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    line-height: 1.5em;
-    font-size: medium;
-}
-
-html {
-    scroll-behavior: smooth;
 }
 
 .reveal {
@@ -27,51 +18,13 @@ html {
     opacity: 1;
 }
 
-.button {
-    border: none;
-    background-color: transparent;
-}
-
-.container {
-    margin: 0 auto;
-    /* max-width: 1120px; */
-    max-width: 1280px;
-    height: 100%;
-}
-
 /* ======== NAVIGATION ======= */
-
 .header {
-    position: fixed;
-    width: 100%;
-    z-index: 50;
     transition: background-color .25s;
 }
 
 .header-dark {
     background-color: #222;
-}
-
-.nav {
-    height: 48px;
-    display: flex;
-    justify-content: space-between;
-}
-
-.nav__logo-link {
-    color: #eee;
-    margin-left: 16px;
-    align-self: center;
-}
-
-.nav__actions {
-    display: flex;
-}
-
-.github-link {
-    display: flex;
-    height: 100%;
-    padding: 0 8px;
 }
 
 .github-link:hover {
@@ -84,164 +37,49 @@ html {
     align-self: center;
 }
 
+.button {
+    border: none;
+    background-color: transparent;
+}
+
 .login-button {
-    color: #eee;
-    height: 100%;
-    padding: 0 14px;
-    margin-right: 8px;
+    color: #f4f4f4;
 }
 
 .login-button:hover {
     background-color: #fff4;
-    cursor: pointer;
-    transition: all .25s;
 }
 
-/* ========== ABOUT ========== */
+/* ========== PROFILE ========== */
 
-.about-section {
-    background-color: #001A33;
-    background-image: url(img/header-bg.png);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    height: 100vh;
-    max-height: 1080px;
+.banner {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
 }
 
-.about-container {
+.picture-container {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background-color: #fff;
     display: flex;
     align-items: center;
+    justify-content: center;
+    position: relative;
+    bottom: 100px;
+    margin-bottom: -100px;
 }
 
-.about {
-    margin: 32px;
-    max-width: 520px;
-}
-
-.about__greet, .about__description {
-    color: #ccc;
-    font-size: 22px;
-}
-
-.about__title {
-    color: #fff;
-    font-weight: 700;
-    font-size: 60px;
-}
-
-/* ========== PROFILE========== */
-
-.profile-section {
-    height: fit-content;
-    background-color: #f4f4f4;
-}
-
-.profile__elements {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 64px;
-    padding: 72px 32px;
-    text-align: center;
-}
-
-.profile__icon {
-    width: 200px;
-    height: 200px;
+.picture {
+    width: 170px;
+    height: 170px;
     border-radius: 50%;
 }
 
-.profile__description {
-    max-width: 50%;
-}
+/* ========== CONTENT ========== */
 
-/* ========== SKILLS========== */
-
-.skills {
-    padding: 72px 32px;
-}
-
-.skills__cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fill,minmax(404px, 1fr));
-    grid-template-rows: 1fr;
-    row-gap: 64px;
-    justify-content: center;
-}
-
-.skills__card {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(3,min-content);
-    row-gap: 24px;
-}
-
-.card__icon {
-    justify-self: center;
-    width: 48px;
-    height: 48px;
-    fill: rgb(255, 209, 122);
-    fill: #222;
-}
-
-.card__title {
-    color: #555;
-    font-weight: bold;
-    text-align: center;
-}
-
-.card__description {
-    color: #888;
-    font-size: 14px;
-    text-align: center;
-    padding: 0 20%;
-}
-
-/* ========== HARD SKILLS========== */
-
-.hard-skills-section {
-    background-color: #f4f4f4;
-}
-
-.hard-skills {
-    padding: 72px 32px;
-}
-
-.hard-skills__cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fill,minmax(148px,1fr));
-    grid-auto-rows: 1fr;
-    gap: 4px;
-}
-
-.hard-skills__card {
-    background-color: #fff;
-    display: flex;
-    justify-content: center;
-    padding: 48px;
-}
-
-.hard-skills__card:hover {
-    cursor: pointer;
-    background-color: #bbb;
-}
-
-.hard-skills__icon {
-    width: 56px;
-    height: 56px;
-    fill: #222;
-}
-
-.hard-skills__bar {
-    margin: 12px 0;
-    width: 100%;
-    height: 8px;
-    border-radius: 2px;
-    background-color: #4b6cff;
-}
-
-.bar-number {
-    font-weight: bold;
+.prueba {
+    height: 2000px;
+    background-color: #3d4c69;
 }
