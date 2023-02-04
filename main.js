@@ -23,6 +23,26 @@ window.onload = () => {
     window.addEventListener('scroll', reveal);
 
     /*
+    ===============  |SCROLL PROGRESS|  ================
+    ==================================================
+    */
+    let progressList = document.querySelectorAll('.bar');
+    let progressCount = 0;
+    function progress(){
+        if (progressCount < progressList.length){
+            if (150 < window.innerHeight - progressList[progressCount].getBoundingClientRect().top){
+                progressList[progressCount].classList.add('bar-active');
+                progressCount++;
+            }
+        }
+    }
+
+    for(let i = 0; i < progressList.length; i++){
+        progress();
+    }
+    window.addEventListener('scroll', progress);
+
+    /*
     ===========  |HEADER COLOR ON SCROLL|  ===========
     ==================================================
     */

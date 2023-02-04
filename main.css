@@ -77,9 +77,31 @@
     border-radius: 50%;
 }
 
-/* ========== CONTENT ========== */
+/* ========== HARD SKILLS ========== */
+
+.progress-bar {
+    height: 6px;
+}
+
+.bar {
+    opacity: 0;
+}
+
+.bar-active {
+    opacity: 1;
+    animation: fillBars 1.5s 1;
+}
 
 .prueba {
     height: 2000px;
     background-color: #3d4c69;
+}
+
+@keyframes fillBars {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
 }
