@@ -26,7 +26,7 @@ window.onload = () => {
     ===============  |SCROLL PROGRESS|  ================
     ==================================================
     */
-    let progressList = document.querySelectorAll('.bar');
+    let progressList = document.querySelectorAll('.animate-bar');
     let progressCount = 0;
     function progress(){
         if (progressCount < progressList.length){
@@ -47,13 +47,15 @@ window.onload = () => {
     ==================================================
     */
     const header = document.querySelector('.header');
-    const aboutSection = document.querySelector('.about-section');
-    window.addEventListener('scroll',function(){
-        if (window.scrollY > (aboutSection.clientHeight/5)) {
+    function headerBackground() {
+        if (window.scrollY > 96) {
             header.classList.add('header-dark');
         } else {
             header.classList.remove('header-dark');
         }
-    });
+    }
+
+    headerBackground();
+    window.addEventListener('scroll', headerBackground);
 
 }
