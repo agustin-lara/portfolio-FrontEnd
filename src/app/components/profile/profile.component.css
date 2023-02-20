@@ -1,0 +1,12 @@
+.picture-container {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    bottom: 100px;
+    margin-bottom: -100px;
+}
