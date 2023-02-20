@@ -1,0 +1,30 @@
+.header {
+    transition: background-color .25s;
+}
+
+.header-dark {
+    background-color: #222;
+}
+
+.github-link:hover {
+    background-color: #fff4;
+}
+
+.github-icon {
+    fill: #eee;
+    height: 32px;
+    align-self: center;
+}
+
+.button {
+    border: none;
+    background-color: transparent;
+}
+
+.login-button {
+    color: #f4f4f4;
+}
+
+.login-button:hover {
+    background-color: #fff4;
+}

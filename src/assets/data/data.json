@@ -1,0 +1,81 @@
+{
+    "profile": {
+        "img": "assets/img/profile-img.png",
+        "alt": "Foto de perfil",
+        "name": "AGUSTÍN LARA",
+        "degree": "DESARROLLADOR WEB FULL-STACK JR",
+        "aboutme": "Me apasiona transformar ideas en productos robustos y atractivos, prestando especial cuidado a los detalles y funcionalidades requeridas para el trabajo"
+    },
+    "softskills": [
+        {
+            "img": "assets/img/versatilidad.png",
+            "alt": "Versatilidad",
+            "title": "VERSATILIDAD",
+            "description": "Las soluciones completas son el resultado del uso de diversas tecnologias agrupadas de forma creativa"
+        },
+        {
+            "img": "assets/img/atencion-al-detalle.png",
+            "alt": "Atención al detalle",
+            "title": "ATENCIÓN AL DETALLE",
+            "description": "Mantener el codigo legible y los algoritmos eficientes es esencial para construir cualquier proyecto destacable"
+        },
+        {
+            "img": "assets/img/trabajo-en-equipo.png",
+            "alt": "Trabajo en equipo",
+            "title": "TRABAJO EN EQUIPO",
+            "description": "Cooperar activamente aumenta el crecimiento del proyecto y la productividad de los participantes"
+        }
+    ],
+    "hardskills": [
+        {
+            "img": "",
+            "title": "HTML",
+            "proficiency": 95,
+            "barcolor": "#f06529"
+        },
+        {
+            "img": "",
+            "title": "CSS",
+            "proficiency": 95,
+            "barcolor": "#2965f1"
+        },
+        {
+            "img": "",
+            "title": "Javascript",
+            "proficiency": 75,
+            "barcolor": "#f0db4f"
+        },
+        {
+            "img": "",
+            "title": "Angular",
+            "proficiency": 60,
+            "barcolor": "#dd1b16"
+        },
+        {
+            "img": "",
+            "title": "Bootstrap",
+            "proficiency": 80,
+            "barcolor": "#563d7c"
+        },
+        {
+            "img": "",
+            "title": "PHP",
+            "proficiency": 75,
+            "barcolor": "#8993be"
+        },
+        {
+            "img": "",
+            "title": "Java",
+            "proficiency": 65,
+            "barcolor": "#5382a1"
+        }
+    ],
+    "projects": [
+        {
+            "img": "",
+            "title": "Mi portafolio personal",
+            "description": "Despliegue Full-Stack adaptable de mi perfil como desarrollador web",
+            "technologies": "Angular, Bootstrap, Java"
+        }
+    ]
+}

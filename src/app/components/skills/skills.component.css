@@ -1,0 +1,17 @@
+.animate-bar {
+    opacity: 0;
+}
+
+.bar-active {
+    opacity: 1;
+    animation: fillBars 1.25s 1 ease-in-out;
+}
+
+@keyframes fillBars {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
