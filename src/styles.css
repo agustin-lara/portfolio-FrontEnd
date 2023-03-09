@@ -1,15 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;700&display=swap');
+/* GLOBAL STYLES */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 
-* {
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 500;
+a, button, h1, h2, h3, h4, h5, h6, input, label, p {
+    font-family: 'Open Sans', sans-serif !important;
 }
 
-.reveal {
-    opacity: 0;
-    transition: transform .8s ease-in-out, opacity .8s ease-in-out;
+.la-dark {
+    color: #1C2026;
 }
 
-.active {
-    opacity: 1;
+.la-bg-dark {
+    background-color: #1C2026;
 }
