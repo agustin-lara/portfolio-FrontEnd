@@ -1,9 +1,12 @@
-<img class="banner w-100 object-fit-cover rounded-bottom-5 la-bg-dark" height="600" src="assets/img/banner.png" alt="banner">
+<img class="banner w-100 object-fit-cover rounded-bottom-5 la-bg-dark" height="480" src="assets/img/banner.png" alt="banner">
 
-<div class="container">
-    <div class="row text-center justify-content-center">
-        <div class="picture-container"><img class="rounded-circle" width="170" height="170" alt="Foto de perfil" src="assets/img/profile-img.png"></div>
-        <h2 class="la-bold la-dark my-2">{{data.profile.name}}</h2>
-        <p class="text-muted">{{data.profile.degree}}</p>
+<ng-container *ngIf="data">
+    <div class="container w-75 my-5">
+        <div class="row text-center justify-content-center">
+            <div class="picture-container"><img class="rounded-circle" width="170" height="170" alt="Foto de perfil" src="assets/img/profile-img.png"></div>
+            <h2 class=" la-dark m-4">Hola! Soy <span class="la-underline">{{data.profile.name}}</span> </h2>
+            <p class="text-muted">{{data.profile.degree}}</p>
+            <p class="fs-5 mt-4">{{data.profile.description}}</p>
+        </div>
     </div>
-</div>
+</ng-container>
