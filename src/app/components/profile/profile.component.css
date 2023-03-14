@@ -1,3 +1,7 @@
+.banner {
+    object-position: left;
+}
+
 .picture-container {
     width: 180px;
     height: 180px;
