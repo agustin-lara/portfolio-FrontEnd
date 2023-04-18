@@ -1,0 +1,29 @@
+.main {
+    display: grid;
+    grid: 100vh / 100%;
+    align-items: center;
+    justify-items: center;
+    background: url("/assets/img/login-bg-dark.png") no-repeat bottom;
+    background-size: cover;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    min-width: 320px;
+    max-width: 470px;
+    min-height: fit-content;
+    width: 80%;
+    border-radius: 6px;
+    background-color: #ffffff;
+    box-shadow: 0 0 8px #222;
+}
+
+.form__input {
+    background-color: #353535;
+    background-color: #454545;
+}
+
+.error {
+    color: red;
+}

@@ -1,12 +1,23 @@
-<img class="banner w-100 object-fit-cover rounded-bottom-5 la-bg-dark" height="480" src="assets/img/banner.png" alt="banner">
+<ng-container *ngIf="profile; else skelet">
+    <img class="banner w-100 object-fit-cover rounded-bottom-5 la-bg-dark" height="480" [src]="profile.imagen_portada" alt="banner">
 
-<ng-container *ngIf="data">
     <div class="container w-75 my-5">
         <div class="row text-center justify-content-center">
-            <div class="picture-container"><img class="rounded-circle" width="170" height="170" alt="Foto de perfil" src="assets/img/profile-img.png"></div>
-            <h2 class=" la-dark m-4">Hola! Soy <span class="la-underline">{{data.profile.name}}</span> </h2>
-            <p class="text-muted">{{data.profile.degree}}</p>
-            <p class="fs-5 mt-4">{{data.profile.description}}</p>
+            <div class="picture-container"><img class="rounded-circle" width="170" height="170" alt="Foto de perfil" [src]="profile.imagen_perfil"></div>
+            <h2 class=" la-dark m-4">Hola! Soy <span class="la-underline">{{profile.nombre}}</span></h2>
+            <p class="text-muted">{{profile.titulo}}</p>
+            <p class="fs-6 mt-4">{{profile.descripcion}}</p>
         </div>
     </div>
 </ng-container>
+<ng-template #skelet>
+    <div class="banner-skelet"></div>
+    <div class="container w-75 my-5">
+        <div class="row text-center justify-content-center">
+            <div class="picture-container picture-container-skelet"></div>
+            <h2 class="la-dark m-4 text-skelet"></h2>
+            <p class="text-muted text-skelet"></p>
+            <p class="fs-6 mt-4 text-skelet"></p>
+        </div>
+    </div>
+</ng-template>
