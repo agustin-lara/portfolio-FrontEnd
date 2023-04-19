@@ -15,6 +15,7 @@ import { ExperienceComponent } from './components/experience/experience.componen
 import { LoginComponent } from './components/login/login.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
 import { ProfileEditComponent } from './components/profile-edit/profile-edit.component';
+import { ExperienceEditComponent } from './components/experience-edit/experience-edit.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { ProfileEditComponent } from './components/profile-edit/profile-edit.com
     ExperienceComponent,
     LoginComponent,
     NotfoundComponent,
-    ProfileEditComponent
+    ProfileEditComponent,
+    ExperienceEditComponent
   ],
   imports: [
     BrowserModule,
