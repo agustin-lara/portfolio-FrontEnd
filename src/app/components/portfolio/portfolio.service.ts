@@ -12,5 +12,9 @@ export class PortfolioService {
   getData(path: string):Observable<object|object[]> {
     return this.http.get<object|object[]>(path);
   }
+
+  getExperience() : Observable<any> {
+    return this.http.get("assets/data/experience.json");
+  }
   
 }

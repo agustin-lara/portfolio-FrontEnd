@@ -1,0 +1,13 @@
+.background {
+    display: grid;
+    grid: 100% / 100%;
+    background: url("/assets/img/login-bg-dark.png") no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.box-color {
+    display: inline-block;
+    width: 24px;
+    height: 12px;
+}

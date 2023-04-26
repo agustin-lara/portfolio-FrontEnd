@@ -1,16 +1,16 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class PortfolioService {
+export class ExperienceService {
 
   constructor(private http:HttpClient) { }
 
-  getData():Observable<any> {
-    return this.http.get('assets/data/data.json');
+  getExperiences(): Observable<any> {
+    return this.http.get("assets/data/experiences.json");
   }
 
 }
