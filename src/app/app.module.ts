@@ -10,12 +10,13 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { SkillsComponent } from './components/skills/skills.component';
 import { ProjectsComponent } from './components/projects/projects.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { PortfolioComponent } from './portfolio/portfolio.component';
+import { PortfolioComponent } from './components/portfolio/portfolio.component';
 import { ExperienceComponent } from './components/experience/experience.component';
 import { LoginComponent } from './components/login/login.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
 import { ProfileEditComponent } from './components/profile-edit/profile-edit.component';
 import { ExperienceEditComponent } from './components/experience-edit/experience-edit.component';
+import { SkillsEditComponent } from './components/skills-edit/skills-edit.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ExperienceEditComponent } from './components/experience-edit/experience
     LoginComponent,
     NotfoundComponent,
     ProfileEditComponent,
-    ExperienceEditComponent
+    ExperienceEditComponent,
+    SkillsEditComponent
   ],
   imports: [
     BrowserModule,

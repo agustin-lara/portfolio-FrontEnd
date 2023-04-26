@@ -1,3 +1,26 @@
+.title-skelet {
+    background-color: #999;
+    height: .75rem;
+}
+
+.text-skelet {
+    background-color: #cfcfcf;
+    height: .75rem;
+}
+
+.img-soft-skelet {
+    background-color: #cfcfcf;
+    height: 96px;
+    width: 96px;
+    border-radius: 50%;
+}
+
+.img-hard-skelet {
+    background-color: #cfcfcf;
+    height: 64px;
+    width: 64px;
+}
+
 .animate-bar {
     opacity: 0;
 }

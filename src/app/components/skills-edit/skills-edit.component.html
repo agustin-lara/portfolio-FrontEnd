@@ -1,0 +1,77 @@
+<div class="background">
+    <div class="container my-5">
+
+        <a class="bg-white rounded-2 py-2 px-3 la-dark text-decoration-none" routerLink="">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" class="me-1" viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                    d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5z" />
+            </svg>
+            Volver
+        </a>
+
+        <!-- SOFTSKILLS TABLE -->
+        <div class="row my-4 text-center">
+            <div class="col">
+                <div class="table-responsive-lg">
+                    <table class="table bg-white rounded-2 py-2">
+                        <thead class="table-alert">
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Descripción</th>
+                                <th>Imágen</th>
+                                <th>Operaciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let softskill of softskills">
+                                <td>{{softskill.nombre}}</td>
+                                <td class="w-50">{{softskill.descripcion}}</td>
+                                <td>{{softskill.imagen}}</td>
+                                <td class="d-flex flex-wrap justify-content-around">
+                                    <a (click)="editSoftskill(softskill)" class="btn btn-primary btn-sm">Editar</a>
+                                    <a (click)="deleteSoftskill(softskill.id)" class="btn btn-danger btn-sm">Eliminar</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- HARDSKILLS TABLE -->
+        <div class="row my-4 text-center">
+            <div class="col">
+                <div class="table-responsive-lg">
+                    <table class="table bg-white rounded-2 py-2">
+                        <thead class="table-alert">
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Grado de dominio</th>
+                                <th>Imágen</th>
+                                <th>Color</th>
+                                <th>Operaciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let hardskill of hardskills">
+                                <td>{{hardskill.nombre}}</td>
+                                <td>{{hardskill.dominio}}</td>
+                                <td>{{hardskill.imagen}}</td>
+                                <td><div class="box-color" [style.backgroundColor]="hardskill.color"></div> {{hardskill.color}}</td>
+                                <td class="d-flex flex-wrap justify-content-around">
+                                    <a (click)="editHardskill(hardskill)" class="btn btn-primary btn-sm">Editar</a>
+                                    <a (click)="deleteHardskill(hardskill.id)" class="btn btn-danger btn-sm">Eliminar</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="w-50 mx-auto bg-white p-4 rounded-2">
+            <!-- FORM -->
+            
+        </div>
+    </div>
+</div>
