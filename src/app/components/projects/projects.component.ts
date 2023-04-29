@@ -1,45 +1,23 @@
-import { Component, ElementRef, ViewChildren, QueryList, HostListener } from '@angular/core';
-import { trigger, state, style, animate, transition } from '@angular/animations';
+import { Component, OnInit } from '@angular/core';
+import { Project } from 'src/app/models/Project';
+import { ProjectsService } from 'src/app/services/projects.service';
 
 @Component({
   selector: 'app-projects',
   templateUrl: './projects.component.html',
-  styleUrls: ['./projects.component.css'],
-  animations: [
-    trigger('reveal', [
-      state('active', style({
-        opacity: 1
-      })),
-      state('hidden', style({
-        opacity: 0
-      })),
-      transition('active => hidden', [
-        animate('0.5s')
-      ]),
-      transition('hidden => active', [
-        animate('0.5s')
-      ])
-    ])
-  ]
+  styleUrls: ['./projects.component.css']
 })
-export class ProjectsComponent {
+export class ProjectsComponent implements OnInit {
 
-  @ViewChildren('reveal') elements!: QueryList<ElementRef>;
-  counter:number = 0;
-  isActive:boolean = false;
+  constructor(private projectsService:ProjectsService) {}
 
-  @HostListener("window:scroll") handleReveal() {
-    this.isActive = this.shouldActive();
-  }
+  projects: Project[] | undefined;
 
-  shouldActive():boolean {
-    if (this.counter < this.elements.length) {
-      if (150 < (window.innerHeight - this.elements.get(this.counter)?.nativeElement.getBoundingClientRect().top)) {
-        return true;
-      }
-    }
-    return false;
+  ngOnInit(): void {
+    this.projectsService.getProjects().subscribe(response => {
+      this.projects = response;
+      console.log(this.projects);
+    });
   }
 
 }
-

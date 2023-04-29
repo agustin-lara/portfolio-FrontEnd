@@ -1,0 +1,25 @@
+@media (hover) {
+    .project-card {
+        transform: scale(0.9);
+        transition: transform 0.25s;
+    }
+    
+    .project-card:hover {
+        transform: scale(1);
+    }
+}
+
+.project-content {
+    background-color: #303640;
+    border-bottom: 6px solid #ffc37c;
+}
+
+.text-skelet {
+    background-color: #cfcfcf;
+    height: .75rem;
+}
+
+.img-skelet {
+    aspect-ratio: 16 / 9;
+    background-color: #cfcfcf;
+}
