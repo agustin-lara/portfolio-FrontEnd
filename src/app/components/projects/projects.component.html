@@ -1,14 +1,71 @@
-<div class="container">
-    <h2 class="fw-bold my-5 text-center text-muted">PROYECTOS</h2>
-    <div #reveal [@reveal]="isActive? 'active' : 'hidden'" class="row flex-wrap-reverse shadow-lg my-5 mx-4 mx-md-0">
-        <!-- <div #reveal [@reveal]="isActive? 'active' : 'hidden'" class="row flex-wrap-reverse shadow-lg my-5 mx-4 mx-md-0"> -->
-        <div class="col-12 col-md p-0 text-center my-auto">
-            <h4 class="my-4 text-muted fw-bold">Mi portafolio personal</h4>
-            <p class="m-4 text-secondary">Despliegue Full-Stack adaptable de mi perfil como desarrollador web</p>
-            <p class="m-4 text-secondary fw-bold">Angular, Bootstrap, Java</p>
-        </div>
-        <div class="col-12 col-md p-0">
-            <img src="assets/img/banner.png" class="h-100 w-100 object-fit-cover" alt="Portafolio" >
-        </div>
+<div class="container w-75 my-5">
+
+    <div class="d-flex">
+        <h2 class="la-dark la-bold"><span class="la-underline">Proyectos</span></h2>
+        <a *ngIf="projects" href="/" class="d-flex ms-3">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" class="align-self-center" aria-label="Editar habilidades" viewBox="0 0 16 16">
+                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+            </svg>
+        </a>
     </div>
+
+    <ng-container *ngIf="projects, else projectSkelet">
+        <div class="row my-4 justify-content-center">
+            <div *ngFor="let project of projects" class="col-sm-6 col-lg-4 my-2 text-center">
+                <div class="project-card">
+                    <img [src]="project.imagen" class="w-100" alt="...">
+                    <div class="py-5 text-light project-content">
+                        <h6 class="la-bold">{{project.nombre}}</h6>
+                        <p class="w-75 mx-auto text-light">{{project.descripcion}}</p>
+                        <div class="d-flex justify-content-center"><hr class="w-75"></div>
+                        <p>{{project.tecnologias}}</p>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </ng-container>
+
+    <ng-template #projectSkelet>
+        <div class="row my-4 justify-content-center">
+            <div class="col-sm-6 col-lg-4 my-2 text-center">
+                <div class="project-card">
+                    <div class="img-skelet w-100"></div>
+                    <div class="py-5 project-content">
+                        <h6 class="text-skelet w-50 mb-4 mx-auto"></h6>
+                        <p class="w-75 mx-auto text-skelet"></p>
+                        <p class="w-75 mx-auto text-skelet"></p>
+                        <div class="d-flex justify-content-center"><hr class="w-75"></div>
+                        <p class="text-skelet w-75 mx-auto"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-4 my-2 text-center">
+                <div class="project-card">
+                    <div class="img-skelet w-100"></div>
+                    <div class="py-5 project-content">
+                        <h6 class="text-skelet w-50 mb-4 mx-auto"></h6>
+                        <p class="w-75 mx-auto text-skelet"></p>
+                        <p class="w-75 mx-auto text-skelet"></p>
+                        <div class="d-flex justify-content-center"><hr class="w-75"></div>
+                        <p class="text-skelet w-75 mx-auto"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-4 my-2 text-center">
+                <div class="project-card">
+                    <div class="img-skelet w-100"></div>
+                    <div class="py-5 project-content">
+                        <h6 class="text-skelet w-50 mb-4 mx-auto"></h6>
+                        <p class="w-75 mx-auto text-skelet"></p>
+                        <p class="w-75 mx-auto text-skelet"></p>
+                        <div class="d-flex justify-content-center"><hr class="w-75"></div>
+                        <p class="text-skelet w-75 mx-auto"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+
 </div>
