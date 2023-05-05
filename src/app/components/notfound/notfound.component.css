@@ -1,0 +1,8 @@
+.background {
+    display: grid;
+    grid: 100vh / 100%;
+    align-items: center;
+    background: url("/assets/img/404.png") no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}

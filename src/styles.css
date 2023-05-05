@@ -18,6 +18,10 @@ a, button, h1, h2, h3, h4, h5, h6, input, label, p {
     background-color: #1C2026;
 }
 
+.la-fill-dark {
+    fill: #1C2026; 
+}
+
 .la-underline {
     background-image: linear-gradient(90deg, #6aa1e5, #e2c99d);
     background-size: 100% 3px;
