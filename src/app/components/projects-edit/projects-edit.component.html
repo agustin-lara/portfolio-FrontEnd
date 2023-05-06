@@ -1,0 +1,103 @@
+<div class="background">
+    <div class="container my-5">
+
+        <a class="bg-white rounded-2 py-2 px-3 la-dark text-decoration-none" routerLink="">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" class="me-1" viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                    d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5z" />
+            </svg>
+            Volver
+        </a>
+
+        <div class="my-4">
+            <div class="table-responsive text-nowrap">
+                <table class="table bg-white rounded-2">
+                    <thead class="table-alert">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Descripción</th>
+                            <th scope="col">Tecnologías</th>
+                            <th scope="col">Imagen</th>
+                            <th scope="col">Operaciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let project of projects">
+                            <th scope="row">{{project.id}}</th>
+                            <td>{{project.nombre}}</td>
+                            <td>{{project.descripcion}}</td>
+                            <td>{{project.tecnologias}}</td>
+                            <td>{{project.imagen}}</td>
+                            <td class="d-flex flex-wrap justify-content-around">
+                                <button (click)="loadFormData(project.id)" type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#updateForm">Editar</button>
+                                <button (click)="deleteProject(project.id)" type="button" class="btn btn-danger btn-sm">Eliminar</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addForm">Crear Proyecto</button>
+        </div>
+
+        <div class="modal fade" id="addForm" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Crear Proyecto</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form [formGroup]="addForm" (ngSubmit)="addProject(addForm.value)" class="d-flex flex-column bg-white">
+                            <label for="nombre" class="mb-2">Nombre*</label>
+                            <input id="nombre" type="text" formControlName="nombre" class="form__input border-0 p-2 mb-3 text-white">
+                            <label for="descripcion" class="mb-2">Descripción*</label>
+                            <input id="descripcion" type="text" formControlName="descripcion" class="form__input border-0 p-2 mb-3 text-white">
+                            <label for="tecnologias" class="mb-2">Tecnologías*</label>
+                            <input id="tecnologias" type="textarea" formControlName="tecnologias" class="form__input border-0 p-2 mb-3 text-white">
+                            <label for="imagen" class="mb-2">Imágen (URL)*</label>
+                            <input id="imagen" type="text" formControlName="imagen" class="form__input border-0 p-2 mb-3 text-white">
+                            <p *ngIf="!addForm.valid" class="text-danger">Los campos marcados con (*) son obligatorios y deben tener al menos 8 caracteres.</p>
+                            <button [disabled]="!addForm.valid" type="submit" class="btn btn-success py-2 mt-3">Crear</button>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Salir</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="updateForm" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Editar Proyecto</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form [formGroup]="updateForm" (ngSubmit)="updateProject(updateForm.value)" class="d-flex flex-column bg-white">
+                            <input id="id" type="hidden" formControlName="id">
+                            <label for="nombre" class="mb-2">Nombre*</label>
+                            <input id="nombre" type="text" formControlName="nombre" class="form__input border-0 p-2 mb-3 text-white">
+                            <label for="descripcion" class="mb-2">Descripción*</label>
+                            <input id="descripcion" type="text" formControlName="descripcion" class="form__input border-0 p-2 mb-3 text-white">
+                            <label for="tecnologias" class="mb-2">Tecnologías*</label>
+                            <input id="tecnologias" type="textarea" formControlName="tecnologias" class="form__input border-0 p-2 mb-3 text-white">
+                            <label for="imagen" class="mb-2">Imágen (URL)*</label>
+                            <input id="imagen" type="text" formControlName="imagen" class="form__input border-0 p-2 mb-3 text-white">
+                            <p *ngIf="!updateForm.valid" class="text-danger">Los campos marcados con (*) son obligatorios y deben tener al menos 8 caracteres.</p>
+                            <button [disabled]="!updateForm.valid" type="submit" class="btn btn-primary py-2 mt-4">Actualizar</button>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Salir</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
