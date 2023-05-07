@@ -14,7 +14,6 @@ import { PortfolioComponent } from './components/portfolio/portfolio.component';
 import { ExperienceComponent } from './components/experience/experience.component';
 import { LoginComponent } from './components/login/login.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
-import { ProfileEditComponent } from './components/profile-edit/profile-edit.component';
 import { ExperienceEditComponent } from './components/experience-edit/experience-edit.component';
 import { SkillsEditComponent } from './components/skills-edit/skills-edit.component';
 import { ProjectsEditComponent } from './components/projects-edit/projects-edit.component';
@@ -31,7 +30,6 @@ import { ProjectsEditComponent } from './components/projects-edit/projects-edit.
     ExperienceComponent,
     LoginComponent,
     NotfoundComponent,
-    ProfileEditComponent,
     ExperienceEditComponent,
     SkillsEditComponent,
     ProjectsEditComponent
