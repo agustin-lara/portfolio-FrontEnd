@@ -1,23 +1,75 @@
 <ng-container *ngIf="profile; else skelet">
-    <img class="banner w-100 object-fit-cover rounded-bottom-5 la-bg-dark" height="480" [src]="profile.imagen_portada" alt="banner">
+    <img class="banner w-100 object-fit-cover rounded-bottom-5 la-bg-dark" height="420" [src]="profile.imagen_portada" alt="banner">
 
     <div class="container w-75 my-5">
-        <div class="row text-center justify-content-center">
-            <div class="picture-container"><img class="rounded-circle" width="170" height="170" alt="Foto de perfil" [src]="profile.imagen_perfil"></div>
-            <h2 class=" la-dark m-4">Hola! Soy <span class="la-underline">{{profile.nombre}}</span></h2>
-            <p class="text-muted">{{profile.titulo}}</p>
-            <p class="fs-6 mt-4">{{profile.descripcion}}</p>
+        <div class="d-flex flex-column justify-content-center text-center">
+            <div class="picture-container mx-auto"><img class="rounded-circle" width="170" height="170" alt="Foto de perfil" [src]="profile.imagen_perfil"></div>
+            <h2 class="la-dark la-bold my-4">Hola! Soy <span class="la-underline">{{profile.nombre}}</span></h2>
+            <p class="fs-6 text-secondary la-bold">{{profile.titulo}}</p>
+            <p class="fs-6 text-secondary">{{profile.descripcion}}</p>
+            <div>
+                <button *ngIf="!profile" type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modalForm"><svg xmlns="http://www.w3.org/2000/svg" width="22" fill="#fff" class="align-self-center me-2" viewBox="0 0 16 16">
+                    <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                    <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                  </svg>Registrar Perfil
+                </button>
+                <button *ngIf="profile" type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modalForm"><svg xmlns="http://www.w3.org/2000/svg" width="22" fill="#fff" class="align-self-center me-2" viewBox="0 0 16 16">
+                    <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                    <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                  </svg>Editar Perfil
+                </button>    
+            </div>
         </div>
     </div>
 </ng-container>
+
 <ng-template #skelet>
     <div class="banner-skelet"></div>
-    <div class="container w-75 my-5">
-        <div class="row text-center justify-content-center">
-            <div class="picture-container picture-container-skelet"></div>
-            <h2 class="la-dark m-4 text-skelet"></h2>
-            <p class="text-muted text-skelet"></p>
-            <p class="fs-6 mt-4 text-skelet"></p>
-        </div>
+    <div class="container w-75 my-5 text-center">
+        <div class="picture-container picture-container-skelet mx-auto"></div>
+        <p class="title-skelet mt-4 w-50 mx-auto"></p>
+        <p class="text-skelet"></p>
+        <p class="text-skelet w-75 mx-auto"></p>
+        <button *ngIf="!profile" type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modalForm"><svg xmlns="http://www.w3.org/2000/svg" width="22" fill="#fff" class="align-self-center me-2" viewBox="0 0 16 16">
+            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+            <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+            </svg>Registrar Perfil
+        </button>
     </div>
 </ng-template>
+
+<!-- MODAL -->
+<div class="modal fade" id="modalForm" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 *ngIf="!profile" class="modal-title fs-5" id="staticBackdropLabel">Registrar Perfil</h1>
+                <h1 *ngIf="profile" class="modal-title fs-5" id="staticBackdropLabel">Editar Perfil</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)" class="d-flex flex-column bg-white">
+                    <label for="nombre" class="mb-2">Nombre*</label>
+                    <input id="nombre" type="text" formControlName="nombre" class="form__input border-0 p-2 mb-3 text-white">
+                    <label for="titulo" class="mb-2">Título*</label>
+                    <input id="titulo" type="text" formControlName="titulo" class="form__input border-0 p-2 mb-3 text-white">
+                    <label for="descripcion" class="mb-2">Descripción*</label>
+                    <input id="descripcion" type="textarea" formControlName="descripcion" class="form__input border-0 p-2 mb-3 text-white">
+                    <label for="imagen_perfil" class="mb-2">Imágen de perfil (URL)*</label>
+                    <input id="imagen_perfil" type="text" formControlName="imagen_perfil" class="form__input border-0 p-2 mb-3 text-white">
+                    <label for="imagen_portada" class="mb-2">Imágen de portada (URL)*</label>
+                    <input id="imagen_portada" type="text" formControlName="imagen_portada" class="form__input border-0 p-2 mb-3 text-white">
+                    <p *ngIf="!form.valid" class="text-danger">Los campos marcados con (*) son obligatorios y deben tener al menos 8 caracteres.</p>
+                    <button *ngIf="!profile" [disabled]="!form.valid" type="submit" class="btn btn-success py-2 mt-3">Registrar</button>
+                    <div *ngIf="profile" class="d-flex justify-content-between">
+                        <button [disabled]="!form.valid" type="submit" class="btn btn-primary py-2 mt-3">Actualizar</button>
+                        <button (click)="deleteProfile()" type="button" class="btn btn-danger py-2 mt-3">Eliminar</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Salir</button>
+            </div>
+        </div>
+    </div>
+</div>

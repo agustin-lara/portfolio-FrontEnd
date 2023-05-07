@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, catchError } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
 import { Profile } from '../models/Profile';
 
@@ -11,12 +11,20 @@ export class ProfileService {
 
   constructor(private http:HttpClient) { }
 
-  getProfile():Observable<any> {
-    return this.http.get(environment.apiUrl+"/api/personas/1");
+  getProfile(): Observable<Profile> {
+    return this.http.get<Profile>(environment.apiUrl + "/api/perfil");
   }
 
-  updateProfile(profile:Profile):Observable<any> {
-    return this.http.put<any>(environment.apiUrl+"/api/personas/editar/1",profile);
+  addProfile(profile: Profile) {
+    return this.http.post(environment.apiUrl + "/api/perfil", profile, {responseType: 'text'});
+  }
+
+  updateProfile(profile: Profile) {
+    return this.http.put(environment.apiUrl + "/api/perfil", profile, {responseType: 'text'});
+  }
+
+  deleteProfile() {
+    return this.http.delete(environment.apiUrl + "/api/perfil", {responseType: 'text'});
   }
 
 }
