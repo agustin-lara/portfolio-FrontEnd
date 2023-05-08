@@ -1,6 +1,6 @@
 .background {
     display: grid;
-    grid: 100% / 100%;
+    grid: 100vh / 100%;
     background: url("/assets/img/login-bg-dark.png") no-repeat;
     background-size: cover;
     background-attachment: fixed;
@@ -10,4 +10,8 @@
     display: inline-block;
     width: 24px;
     height: 12px;
+}
+
+.form__input {
+    background-color: #4d5767;
 }

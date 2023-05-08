@@ -12,7 +12,7 @@
     background-color: #cfcfcf;
     height: 96px;
     width: 96px;
-    border-radius: 50%;
+    border-top: 4px solid #7a58d8;
 }
 
 .img-hard-skelet {
@@ -28,6 +28,12 @@
 .bar-active {
     opacity: 1;
     animation: fillBars 1.25s 1 ease-in-out;
+}
+
+.bar-active-skelet {
+    height: 8px;
+    max-width: 75%;
+    background-color: #a598ca;
 }
 
 @keyframes fillBars {
