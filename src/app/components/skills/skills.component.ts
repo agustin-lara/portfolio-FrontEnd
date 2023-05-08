@@ -12,17 +12,23 @@ export class SkillsComponent implements OnInit {
 
   constructor(private skillsService:SkillsService) {}
 
-  softskills: Softskill[] | undefined;
-  hardskills: Hardskill[] | undefined;
+  softskills: Softskill[] = [];
+  hardskills: Hardskill[] = [];
 
   ngOnInit(): void {
+    this.getSoftskills();
+    this.getHardskills();
+  }
+
+  getSoftskills() {
     this.skillsService.getSoftskills().subscribe(response => {
       this.softskills = response;
-      console.log(this.softskills);
     });
+  }
+
+  getHardskills() {
     this.skillsService.getHardskills().subscribe(response => {
       this.hardskills = response;
-      console.log(this.hardskills);
     });
   }
 

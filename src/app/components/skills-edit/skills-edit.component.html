@@ -9,69 +9,127 @@
             Volver
         </a>
 
-        <!-- SOFTSKILLS TABLE -->
-        <div class="row my-4 text-center">
-            <div class="col">
-                <div class="table-responsive-lg">
-                    <table class="table bg-white rounded-2 py-2">
-                        <thead class="table-alert">
-                            <tr>
-                                <th>Nombre</th>
-                                <th>Descripción</th>
-                                <th>Imágen</th>
-                                <th>Operaciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let softskill of softskills">
-                                <td>{{softskill.nombre}}</td>
-                                <td class="w-50">{{softskill.descripcion}}</td>
-                                <td>{{softskill.imagen}}</td>
-                                <td class="d-flex flex-wrap justify-content-around">
-                                    <a (click)="editSoftskill(softskill)" class="btn btn-primary btn-sm">Editar</a>
-                                    <a (click)="deleteSoftskill(softskill.id)" class="btn btn-danger btn-sm">Eliminar</a>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+        <!-- SOFTSKILL TABLE -->
+        <div class="my-4">
+            <div class="table-responsive text-nowrap">
+                <table class="table bg-white rounded-2">
+                    <thead class="table-alert">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Descripción</th>
+                            <th scope="col">Imagen</th>
+                            <th scope="col">Operaciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let softskill of softskills">
+                            <th scope="row">{{softskill.id}}</th>
+                            <td>{{softskill.nombre}}</td>
+                            <td>{{softskill.descripcion}}</td>
+                            <td>{{softskill.imagen}}</td>
+                            <td><button (click)="selectSoftskill(softskill.id)" type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#softskillModal">Editar</button></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
+            <button (click)="unSelectSoftskill()" type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#softskillModal">Crear Habilidad blanda</button>
         </div>
 
         <!-- HARDSKILLS TABLE -->
-        <div class="row my-4 text-center">
-            <div class="col">
-                <div class="table-responsive-lg">
-                    <table class="table bg-white rounded-2 py-2">
-                        <thead class="table-alert">
-                            <tr>
-                                <th>Nombre</th>
-                                <th>Grado de dominio</th>
-                                <th>Imágen</th>
-                                <th>Color</th>
-                                <th>Operaciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let hardskill of hardskills">
-                                <td>{{hardskill.nombre}}</td>
-                                <td>{{hardskill.dominio}}</td>
-                                <td>{{hardskill.imagen}}</td>
-                                <td><div class="box-color" [style.backgroundColor]="hardskill.color"></div> {{hardskill.color}}</td>
-                                <td class="d-flex flex-wrap justify-content-around">
-                                    <a (click)="editHardskill(hardskill)" class="btn btn-primary btn-sm">Editar</a>
-                                    <a (click)="deleteHardskill(hardskill.id)" class="btn btn-danger btn-sm">Eliminar</a>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+        <div class="my-4">
+            <div class="table-responsive text-nowrap">
+                <table class="table bg-white rounded-2">
+                    <thead class="table-alert">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Grado de dominio</th>
+                            <th scope="col">Color</th>
+                            <th scope="col">Operaciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let hardskill of hardskills">
+                            <th scope="row">{{hardskill.id}}</th>
+                            <td>{{hardskill.nombre}}</td>
+                            <td>{{hardskill.dominio}}</td>
+                            <td><div class="box-color" [style.backgroundColor]="hardskill.color"></div> {{hardskill.color}}</td>
+                            <td class="d-flex flex-wrap justify-content-around">
+                                <button (click)="selectHardskill(hardskill.id)" type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#hardskillModal">Editar</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
+            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#hardskillModal">Crear Habilidad dura</button>
         </div>
 
-        <div class="w-50 mx-auto bg-white p-4 rounded-2">
-            <!-- FORM -->
-            
+    </div>
+</div>
+
+<!-- SOFTSKILL MODAL FORM -->
+<div class="modal fade" id="softskillModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 *ngIf="!selectedSoftskill" class="modal-title fs-5" id="staticBackdropLabel">Crear Habilidad blanda</h1>
+                <h1 *ngIf="selectedSoftskill" class="modal-title fs-5" id="staticBackdropLabel">Editar Habilidad blanda</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="softForm" (ngSubmit)="onSubmitSoftskill(softForm.value)" class="d-flex flex-column bg-white">
+                    <input id="id" type="hidden" formControlName="id">
+                    <label for="nombre" class="mb-2">Nombre*</label>
+                    <input id="nombre" type="text" formControlName="nombre" class="form__input border-0 p-2 mb-3 text-white">
+                    <label for="descripcion" class="mb-2">Descripción*</label>
+                    <input id="descripcion" type="textarea" formControlName="descripcion" class="form__input border-0 p-2 mb-3 text-white">
+                    <label for="imagen" class="mb-2">Imágen (URL)*</label>
+                    <input id="imagen" type="text" formControlName="imagen" class="form__input border-0 p-2 mb-3 text-white">
+                    <p *ngIf="!softForm.valid" class="text-danger">Los campos marcados con (*) son obligatorios y deben tener al menos 8 caracteres.</p>
+                    <button *ngIf="!selectedSoftskill" [disabled]="!softForm.valid" type="submit" class="btn btn-success py-2 mt-3">Crear</button>
+                    <div *ngIf="selectedSoftskill" class="d-flex justify-content-between">
+                        <button [disabled]="!softForm.valid" type="submit" class="btn btn-primary py-2 mt-3">Actualizar</button>
+                        <button (click)="deleteSoftskill(selectedSoftskill.id)" type="button" class="btn btn-danger py-2 mt-3">Eliminar</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Salir</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- HARDSKILL MODAL FORM -->
+<div class="modal fade" id="hardskillModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 *ngIf="!selectedHardskill" class="modal-title fs-5" id="staticBackdropLabel">Crear Habilidad dura</h1>
+                <h1 *ngIf="selectedHardskill" class="modal-title fs-5" id="staticBackdropLabel">Editar Habilidad dura</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="hardForm" (ngSubmit)="onSubmitHardskill(hardForm.value)" class="d-flex flex-column bg-white">
+                    <input id="id" type="hidden" formControlName="id">
+                    <label for="nombre" class="mb-2">Nombre*</label>
+                    <input id="nombre" type="text" formControlName="nombre" class="form__input border-0 p-2 mb-3 text-white">
+                    <label for="dominio" class="mb-2">Dominio* (Mínimo: 0 - Máximo: 100)</label>
+                    <input id="dominio" type="range" formControlName="dominio" min="0" max="100" step="5" value="50" class="form__input border-0 p-2 mb-3 text-white">
+                    <label for="color" class="mb-2">Color*</label>
+                    <input id="color" type="color" formControlName="color" value="#a598ca" class="p-2 mb-3">
+                    <p *ngIf="!hardForm.valid" class="text-danger">Los campos marcados con (*) son obligatorios.</p>
+                    <button *ngIf="!selectedHardskill" [disabled]="!hardForm.valid" type="submit" class="btn btn-success py-2 mt-3">Crear</button>
+                    <div *ngIf="selectedHardskill" class="d-flex justify-content-between">
+                        <button [disabled]="!hardForm.valid" type="submit" class="btn btn-primary py-2 mt-3">Actualizar</button>
+                        <button (click)="deleteHardskill(selectedHardskill.id)" type="button" class="btn btn-danger py-2 mt-3">Eliminar</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Salir</button>
+            </div>
         </div>
     </div>
 </div>

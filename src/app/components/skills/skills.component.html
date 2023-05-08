@@ -1,20 +1,17 @@
 <div class="container w-75 my-5">
 
-    <div class="d-flex">
-        <h2 class="la-dark la-bold"><span class="la-underline">Habilidades</span></h2>
-        <a *ngIf="softskills || hardskills" href="/habilidades" class="d-flex ms-3">
-            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" class="align-self-center" aria-label="Editar habilidades" viewBox="0 0 16 16">
-                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-            </svg>
-        </a>
+    <h2 class="la-dark la-bold mb-3"><span class="la-underline">Habilidades</span></h2>
+    <div><a routerLink="/habilidades" class="btn btn-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="22" fill="#fff" class="align-self-center me-2" viewBox="0 0 16 16">
+        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+        </svg>Editar</a>
     </div>
 
-    <ng-container *ngIf="softskills, else softSkelet">
+    <ng-container *ngIf="softskills.length, else softSkelet">
         <div class="row justify-content-center text-center my-4">
             <div *ngFor="let softskill of softskills" class="col-sm-6 col-lg-4 p-4">
-                <img [src]="softskill.imagen" class="mb-4" width="96" height="96" alt="Imagen habilidad">
-                <h3 class="mb-3 fw-bold fs-6 text-muted">{{softskill.nombre}}</h3>
+                <img [src]="softskill.imagen" class="mb-4 rounded-bottom-5" width="96" height="96" alt="Imagen habilidad" style="border-top: 4px solid #7a58d8">
+                <h6 class="mb-3 fw-bold" style="color: #7a58d8;">{{softskill.nombre}}</h6>
                 <p class="text-secondary">{{softskill.descripcion}}</p>
             </div>
         </div>
@@ -23,21 +20,21 @@
     <ng-template #softSkelet>
         <div class="row justify-content-center my-4">
             <div class="col-sm-6 col-lg-4 p-4">
-                <div class="img-soft-skelet mb-4 mx-auto"></div>
+                <div class="img-soft-skelet mb-4 rounded-bottom-5 mx-auto"></div>
                 <p class="title-skelet mb-3 w-50 mx-auto"></p>
                 <p class="text-skelet mb-3 w-75 mx-auto"></p>
                 <p class="text-skelet mb-3 w-75 mx-auto"></p>
                 <p class="text-skelet mb-3 w-25 mx-auto"></p>
             </div>
             <div class="col-sm-6 col-lg-4 p-4">
-                <div class="img-soft-skelet mb-4 mx-auto"></div>
+                <div class="img-soft-skelet mb-4 rounded-bottom-5 mx-auto"></div>
                 <p class="title-skelet mb-3 w-50 mx-auto"></p>
                 <p class="text-skelet mb-3 w-75 mx-auto"></p>
                 <p class="text-skelet mb-3 w-75 mx-auto"></p>
                 <p class="text-skelet mb-3 w-25 mx-auto"></p>
             </div>
             <div class="col-sm-6 col-lg-4 p-4">
-                <div class="img-soft-skelet mb-4 mx-auto"></div>
+                <div class="img-soft-skelet mb-4 rounded-bottom-5 mx-auto"></div>
                 <p class="title-skelet mb-3 w-50 mx-auto"></p>
                 <p class="text-skelet mb-3 w-75 mx-auto"></p>
                 <p class="text-skelet mb-3 w-75 mx-auto"></p>
@@ -46,17 +43,16 @@
         </div>
     </ng-template>
 
-    <ng-container *ngIf="hardskills, else hardSkelet">
-        <div class="row justify-content-center">
-            <div *ngFor="let hardskill of hardskills" class="col-md-4 col-lg-6 my-4">
-                <svg xmlns="http://www.w3.org/2000/svg" height="64" fill="#383838" aria-hidden="true" viewBox="0 0 384 512"><path d="M0 32l34.9 395.8L191.5 480l157.6-52.2L384 32H0zm308.2 127.9H124.4l4.1 49.4h175.6l-13.6 148.4-97.9 27v.3h-1.1l-98.7-27.3-6-75.8h47.7L138 320l53.5 14.5 53.7-14.5 6-62.2H84.3L71.5 112.2h241.1l-4.4 47.7z"/></svg>
+    <ng-container *ngIf="hardskills.length, else hardSkelet">
+        <div class="row justify-content-center text-white rounded-2 px-3 py-2" style="background-color: #2c333f;">
+            <div *ngFor="let hardskill of hardskills" class="col-md-6 col-xl-4 my-4">
                 <div class="d-flex justify-content-between">
-                    <p [attr.id]="'bar-'+hardskill.nombre">{{hardskill.nombre}}</p>
-                    <p>{{hardskill.dominio}}%</p>
+                    <p class="mb-2" [attr.id]="'bar-'+hardskill.nombre">{{hardskill.nombre}}</p>
+                    <p class="m-0 p-0">{{hardskill.dominio}}%</p>
                 </div>
                 <div class="d-flex align-items-center">
-                    <div style="height: 6px;width: 100%;background-color: #d8d8d8;" role="progressbar" [attr.aria-labelledby]="'bar-'+hardskill.nombre" [attr.aria-valuenow]="hardskill.dominio">
-                        <div class="bar-active" style="height:6px;" [style.maxWidth]="hardskill.dominio+'%'" [style.backgroundColor]="hardskill.color"></div>
+                    <div class="rounded-2" style="height: 8px;width: 100%;background-color: #fff;" role="progressbar" [attr.aria-labelledby]="'bar-'+hardskill.nombre" [attr.aria-valuenow]="hardskill.dominio">
+                        <div class="bar-active" style="height:8px;" [style.maxWidth]="hardskill.dominio+'%'" [style.backgroundColor]="hardskill.color"></div>
                     </div>
                 </div>
             </div>
@@ -64,38 +60,61 @@
     </ng-container>
 
     <ng-template #hardSkelet>
-        <div class="row justify-content-center">
-            <div class="col-md-4 col-lg-6 my-4">
-                <div class="img-hard-skelet rounded-2"></div>
-                <div class="d-flex justify-content-between mt-3">
-                    <p class="title-skelet w-25"></p>
-                    <p class="text-skelet w-25"></p>
+        <div class="row justify-content-center text-white rounded-2 px-3 py-4" style="background-color: #2c333f;">
+            <div class="col-md-6 col-xl-4 my-5">
+                <div class="d-flex justify-content-between">
+                    <p class="text-skelet mb-2 w-25"></p>
+                    <p class="text-skelet m-0 p-0 w-25"></p>
                 </div>
-                <p class="text-skelet"></p>
+                <div class="d-flex align-items-center">
+                    <div class="rounded-2" style="height: 8px;width: 100%;background-color: #fff;">
+                        <div class="bar-active bar-active-skelet"></div>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-4 col-lg-6 my-4">
-                <div class="img-hard-skelet rounded-2"></div>
-                <div class="d-flex justify-content-between mt-3">
-                    <p class="title-skelet w-25"></p>
-                    <p class="text-skelet w-25"></p>
+            <div class="col-md-6 col-xl-4 my-5">
+                <div class="d-flex justify-content-between">
+                    <p class="text-skelet mb-2 w-25"></p>
+                    <p class="text-skelet m-0 p-0 w-25"></p>
                 </div>
-                <p class="text-skelet"></p>
+                <div class="d-flex align-items-center">
+                    <div class="rounded-2" style="height: 8px;width: 100%;background-color: #fff;">
+                        <div class="bar-active bar-active-skelet"></div>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-4 col-lg-6 my-4">
-                <div class="img-hard-skelet rounded-2"></div>
-                <div class="d-flex justify-content-between mt-3">
-                    <p class="title-skelet w-25"></p>
-                    <p class="text-skelet w-25"></p>
+            <div class="col-md-6 col-xl-4 my-5">
+                <div class="d-flex justify-content-between">
+                    <p class="text-skelet mb-2 w-25"></p>
+                    <p class="text-skelet m-0 p-0 w-25"></p>
                 </div>
-                <p class="text-skelet"></p>
+                <div class="d-flex align-items-center">
+                    <div class="rounded-2" style="height: 8px;width: 100%;background-color: #fff;">
+                        <div class="bar-active bar-active-skelet"></div>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-4 col-lg-6 my-4">
-                <div class="img-hard-skelet rounded-2"></div>
-                <div class="d-flex justify-content-between mt-3">
-                    <p class="title-skelet w-25"></p>
-                    <p class="text-skelet w-25"></p>
+            <div class="col-md-6 col-xl-4 my-5">
+                <div class="d-flex justify-content-between">
+                    <p class="text-skelet mb-2 w-25"></p>
+                    <p class="text-skelet m-0 p-0 w-25"></p>
                 </div>
-                <p class="text-skelet"></p>
+                <div class="d-flex align-items-center">
+                    <div class="rounded-2" style="height: 8px;width: 100%;background-color: #fff;">
+                        <div class="bar-active bar-active-skelet"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-4 my-5">
+                <div class="d-flex justify-content-between">
+                    <p class="text-skelet mb-2 w-25"></p>
+                    <p class="text-skelet m-0 p-0 w-25"></p>
+                </div>
+                <div class="d-flex align-items-center">
+                    <div class="rounded-2" style="height: 8px;width: 100%;background-color: #fff;">
+                        <div class="bar-active bar-active-skelet"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </ng-template>
