@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Experience } from 'src/app/models/Experience';
-import { PortfolioService } from 'src/app/portfolio/portfolio.service';
+import { ExperienceService } from 'src/app/services/experience.service';
 
 @Component({
   selector: 'app-experience-edit',
@@ -10,37 +10,79 @@ import { PortfolioService } from 'src/app/portfolio/portfolio.service';
 })
 export class ExperienceEditComponent implements OnInit {
 
-  constructor(private portfolioService:PortfolioService) {
-    this.selectedExperience = new Experience();
-  }
+  form!: FormGroup;
 
-  selectedExperience!: Experience;
-  experiences!: Experience[];
-
-  ngOnInit(): void {
-    this.portfolioService.getExperience().subscribe(response => {
-      this.experiences = response;
-      console.log(response);
+  constructor(private experienceService: ExperienceService, private formBuilder: FormBuilder) {
+    this.form = this.formBuilder.group({
+      id:[''],
+      nombre:['',[Validators.required, Validators.minLength(8)]],
+      institucion:['',[Validators.required, Validators.minLength(8)]],
+      fecha:['',[Validators.required, Validators.minLength(8)]],
+      imagen:['',[Validators.required, Validators.minLength(8)]]
     });
   }
 
-  resetForm(form?: NgForm): void {
-    if (form) {
-      this.selectedExperience = new Experience();
-      form.reset();
+  experiences: Experience[] | undefined;
+  selectedExperience: Experience | undefined;
+
+  ngOnInit(): void {
+    this.getExperiences();
+  }
+
+  getExperiences() {
+    this.experienceService.getExperiences().subscribe(response => {
+      this.experiences = response;
+    });
+  }
+
+  addExperience(experience: Experience) {
+    this.experienceService.addExperience(experience).subscribe(response => {
+      alert(response);
+      this.getExperiences();
+    });
+  }
+
+  updateExperience(experience: Experience) {
+    this.experienceService.updateExperience(experience).subscribe(response => {
+      alert(response);
+      this.getExperiences();
+    });
+  }
+
+  deleteExperience(id: number) {
+    if(confirm("¿Estás seguro de que quieres eliminar esta experiencia?")) {
+      this.experienceService.deleteExperience(id).subscribe(response => {
+        alert(response);
+        this.getExperiences();
+      });
     }
   }
 
-  addExperience(form?: NgForm): void {
-    console.log("Just clicked create!");
+  selectExperience(id: number) {
+    const result = this.experiences?.filter(experience => experience.id === id);
+    if(result) {
+      this.selectedExperience = {
+        id: result[0].id,
+        nombre: result[0].nombre,
+        institucion: result[0].institucion,
+        fecha: result[0].fecha,
+        imagen: result[0].imagen
+      }
+      this.form.setValue(this.selectedExperience);
+    }
   }
 
-  editExperience(experience:Experience): void {
-    this.selectedExperience = experience;
+  unSelectExperience() {
+    this.selectedExperience = undefined;
+    this.form.reset();
   }
 
-  deleteExperience(id:number): void {
-    console.log("Just clicked delete ID: " + id + "!");
+  onSubmit(experience: Experience) {
+    if(!this.selectedExperience) {
+      this.addExperience(experience);
+    } else {
+      this.updateExperience(experience);
+    }
   }
 
 }
