@@ -1,0 +1,72 @@
+<div class="background">
+    <div class="container my-5">
+
+        <a class="bg-white rounded-2 py-2 px-3 la-dark text-decoration-none" routerLink="">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" class="me-1" viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                    d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5z" />
+            </svg>
+            Volver
+        </a>
+
+        <div class="my-4">
+            <div class="table-responsive text-nowrap">
+                <table class="table bg-white rounded-2">
+                    <thead class="table-alert">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Fecha</th>
+                            <th scope="col">Imagen</th>
+                            <th scope="col">Operaciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let education of educations">
+                            <th scope="row">{{education.id}}</th>
+                            <td>{{education.nombre}}</td>
+                            <td>{{education.fecha}}</td>
+                            <td>{{education.imagen}}</td>
+                            <td><button (click)="selectEducation(education.id)" type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modal">Editar</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <button (click)="unSelectEducation()" type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal">Crear Formación</button>
+        </div>
+
+    </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal fade" id="modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 *ngIf="!selectedEducation" class="modal-title fs-5" id="staticBackdropLabel">Crear Formación</h1>
+                <h1 *ngIf="selectedEducation" class="modal-title fs-5" id="staticBackdropLabel">Editar Formación</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)" class="d-flex flex-column bg-white">
+                    <input id="id" type="hidden" formControlName="id">
+                    <label for="nombre" class="mb-2">Nombre*</label>
+                    <input id="nombre" type="text" formControlName="nombre" class="form__input border-0 p-2 mb-3 text-white">
+                    <label for="fecha" class="mb-2">Fecha</label>
+                    <input id="fecha" type="text" formControlName="fecha" class="form__input border-0 p-2 mb-3 text-white">
+                    <label for="imagen" class="mb-2">Imágen (URL)*</label>
+                    <input id="imagen" type="text" formControlName="imagen" class="form__input border-0 p-2 mb-3 text-white">
+                    <p *ngIf="!form.valid" class="text-danger">Alguno de los campos no es válido. Recuerda que los campos marcados con (*) deben tener al menos 8 caracteres y la Fecha debe tener al menos 4 caracteres.</p>
+                    <button *ngIf="!selectedEducation" [disabled]="!form.valid" type="submit" class="btn btn-success py-2 mt-3">Crear</button>
+                    <div *ngIf="selectedEducation" class="d-flex justify-content-between">
+                        <button [disabled]="!form.valid" type="submit" class="btn btn-primary py-2 mt-3">Actualizar</button>
+                        <button (click)="deleteEducation(selectedEducation.id)" type="button" class="btn btn-danger py-2 mt-3">Eliminar</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Salir</button>
+            </div>
+        </div>
+    </div>
+</div>

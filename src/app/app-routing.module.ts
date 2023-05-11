@@ -6,11 +6,13 @@ import { NotfoundComponent } from './components/notfound/notfound.component';
 import { ExperienceEditComponent } from './components/experience-edit/experience-edit.component';
 import { SkillsEditComponent } from './components/skills-edit/skills-edit.component';
 import { ProjectsEditComponent } from './components/projects-edit/projects-edit.component';
+import { EducationEditComponent } from './components/education-edit/education-edit.component';
 
 const routes: Routes = [
   {path: '', component:PortfolioComponent},
   {path: 'login', component:LoginComponent},
   {path: 'experiencia', component:ExperienceEditComponent},
+  {path: 'formacion', component:EducationEditComponent},
   {path: 'habilidades', component:SkillsEditComponent},
   {path: 'proyectos', component:ProjectsEditComponent},
   {path: '**', component:NotfoundComponent}
