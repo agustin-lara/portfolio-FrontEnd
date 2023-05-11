@@ -1,0 +1,19 @@
+.frame {
+	padding: 16px;
+	border-width: 24px;
+	border-style: solid;
+	border-color: #2c2b2a #3b3a39 #42403f #3b3a39;
+	background: #f1f1f1;
+	box-shadow: 0 6px 12px #000c;
+	transform: scale(.8);
+}
+
+.img-skelet {
+    aspect-ratio: 16 / 9;
+    background-color: #cfcfcf;
+}
+
+.text-skelet {
+    background-color: #cfcfcf;
+    height: .75rem;
+}

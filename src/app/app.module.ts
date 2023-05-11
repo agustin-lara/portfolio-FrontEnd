@@ -17,6 +17,8 @@ import { NotfoundComponent } from './components/notfound/notfound.component';
 import { ExperienceEditComponent } from './components/experience-edit/experience-edit.component';
 import { SkillsEditComponent } from './components/skills-edit/skills-edit.component';
 import { ProjectsEditComponent } from './components/projects-edit/projects-edit.component';
+import { EducationComponent } from './components/education/education.component';
+import { EducationEditComponent } from './components/education-edit/education-edit.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { ProjectsEditComponent } from './components/projects-edit/projects-edit.
     NotfoundComponent,
     ExperienceEditComponent,
     SkillsEditComponent,
-    ProjectsEditComponent
+    ProjectsEditComponent,
+    EducationComponent,
+    EducationEditComponent
   ],
   imports: [
     BrowserModule,
