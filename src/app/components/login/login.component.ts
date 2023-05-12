@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { User } from 'src/app/models/User';
 
 @Component({
   selector: 'app-login',
@@ -12,8 +13,8 @@ export class LoginComponent {
 
   constructor(private formBuilder: FormBuilder) {
     this.form = this.formBuilder.group({
-      username:['',[Validators.required, Validators.minLength(6),Validators.maxLength(14)]],
-      password:['',[Validators.required, Validators.minLength(8),Validators.maxLength(16)]]
+      username:['',[Validators.required, Validators.minLength(6),Validators.maxLength(22)]],
+      password:['',[Validators.required, Validators.minLength(8),Validators.maxLength(22)]]
     });
   }
 
@@ -25,8 +26,12 @@ export class LoginComponent {
     return this.form.get('password');
   }
 
-  onSubmit() {
-    console.log(this.form.value);
+  login(user: User) {
+
+  }
+
+  logout() {
+    
   }
 
 }
