@@ -10,31 +10,35 @@
         </a>
 
         <div class="form-container my-5 mx-auto">
-            <form [formGroup]="form" (ngSubmit)="login(form.value)" class="d-flex flex-column bg-white rounded-2 p-4 shadow">
+            <form [formGroup]="form" (ngSubmit)="register(form.value)" class="d-flex flex-column bg-white rounded-2 p-4 shadow">
 
-                <h2 class="text-center mb-2">Bienvenid@</h2>
-                <p class="text-center mb-4">Inicia sesión para utilizar funciones adicionales</p>
+                <h3 class="text-center mb-2">Formulario de Registro</h3>
+                <p class="text-center mb-4">Regístrate para utilizar funciones adicionales</p>
 
                 <label for="username" class="mb-2">USUARIO</label>
                 <input id="username" type="text" formControlName="username" class="form__input border-0 p-2 mb-3 text-white">
                 <label for="password" class="mb-2">CONTRASEÑA</label>
                 <input id="password" type="password" formControlName="password" class="form__input border-0 p-2 mb-3 text-white">
+                <label for="confirmPassword" class="mb-2">CONFIRMAR CONTRASEÑA</label>
+                <input id="confirmPassword" type="password" formControlName="confirmPassword" class="form__input border-0 p-2 mb-3 text-white">
 
                 <div *ngIf="username?.errors && username?.touched">
                     <p *ngIf="username?.hasError('required')" class="text-danger">El nombre de usuario es requerido.</p>
                     <p *ngIf="username?.hasError('minlength')" class="text-danger">El nombre de usuario debe tener al menos 6 caracteres.</p>
-                    <p *ngIf="username?.hasError('maxlength')" class="text-danger">El nombre de usuario debe tener 22 caracteres como máximo.</p>
+                    <p *ngIf="username?.hasError('maxlength')" class="text-danger">El nombre de usuario debe tener 14 caracteres como máximo.</p>
                 </div>
 
-                <div *ngIf="password?.errors && password?.touched">
+                <div *ngIf="password?.errors && password?.touched || confirmPassword?.errors && confirmPassword?.touched">
                     <p *ngIf="password?.hasError('required')" class="text-danger">La contraseña es requerida.</p>
                     <p *ngIf="password?.hasError('minlength')" class="text-danger">La contraseña debe tener al menos 8 caracteres.</p>
-                    <p *ngIf="password?.hasError('maxlength')" class="text-danger">La contraseña debe tener 22 caracteres como máximo.</p>
+                    <p *ngIf="password?.hasError('maxlength')" class="text-danger">La contraseña debe tener 16 caracteres como máximo.</p>
                 </div>
 
-                <button [disabled]="!form.valid" type="submit" class="btn btn-primary py-2 mt-4">Iniciar sesión</button>
+                <div *ngIf="password?.touched && confirmPassword?.touched">
+                    <p *ngIf="!passwordsMatch()" class="text-danger">Las contraseñas no coinciden.</p>
+                </div>
 
-                <p class="mx-auto mt-4">Aún no tienes una cuenta? <a routerLink="/register" class="">Regístrate</a></p>
+                <button [disabled]="!form.valid || !passwordsMatch()" type="submit" class="btn btn-primary py-2 mt-4">Registrarse</button>
 
             </form>
         </div>
