@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProfileService } from '../../services/profile.service';
 import { Profile } from 'src/app/models/Profile';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-profile',
@@ -10,7 +11,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor(private profileService:ProfileService, private formBuilder: FormBuilder) {
+  constructor(private profileService:ProfileService, private formBuilder: FormBuilder, private authService: AuthService) {
     this.form = this.formBuilder.group({
       nombre:['',[Validators.required, Validators.minLength(8)]],
       titulo:['',[Validators.required, Validators.minLength(8)]],
@@ -22,8 +23,14 @@ export class ProfileComponent implements OnInit {
 
   form!: FormGroup;
   profile: Profile | undefined;
+  userLogged: boolean = false;
 
   ngOnInit(): void {
+    this.authService.loggedIn.subscribe({
+      next: userLogged => {
+        this.userLogged = userLogged;
+      }
+    });
     this.getProfile();
   }
 
@@ -61,19 +68,27 @@ export class ProfileComponent implements OnInit {
   }
 
   deleteProfile() {
-    if(confirm("¿Estás seguro de que quieres eliminar el Perfil? Ten en cuenta que al hacer esto también se eliminará toda la informacion del Portafolio")) {
-      this.profileService.deleteProfile().subscribe(response => {
-        alert(response);
-        this.getProfile();
-      });
+    if(this.userLogged) {
+      if(confirm("¿Estás seguro de que quieres eliminar el Perfil? Ten en cuenta que al hacer esto también se eliminará toda la informacion del Portafolio")) {
+        this.profileService.deleteProfile().subscribe(response => {
+          alert(response);
+          this.getProfile();
+        });
+      }
+    } else {
+      alert("Permiso denegado.");
     }
   }
 
   onSubmit(profile: Profile) {
-    if(this.profile) {
-      this.updateProfile(profile);
+    if(this.userLogged) {
+      if(this.profile) {
+        this.updateProfile(profile);
+      } else {
+        this.addProfile(profile);
+      }
     } else {
-      this.addProfile(profile);
+      alert("Permiso denegado.")
     }
   }
 

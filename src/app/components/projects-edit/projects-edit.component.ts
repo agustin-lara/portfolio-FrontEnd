@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Project } from 'src/app/models/Project';
+import { AuthService } from 'src/app/services/auth.service';
 import { ProjectsService } from 'src/app/services/projects.service';
 
 @Component({
@@ -10,7 +11,7 @@ import { ProjectsService } from 'src/app/services/projects.service';
 })
 export class ProjectsEditComponent implements OnInit {
 
-  constructor(private projectService:ProjectsService, private formBuilder: FormBuilder) {
+  constructor(private projectService:ProjectsService, private formBuilder: FormBuilder, private authService: AuthService) {
     this.addForm = this.formBuilder.group({
       nombre:['',[Validators.required, Validators.minLength(8)]],
       descripcion:['',[Validators.required, Validators.minLength(8)]],
@@ -30,8 +31,14 @@ export class ProjectsEditComponent implements OnInit {
   selectedProject: Project | undefined;
   addForm!: FormGroup;
   updateForm!: FormGroup;
+  userLogged: boolean = false;
 
   ngOnInit(): void {
+    this.authService.loggedIn.subscribe({
+      next: userLogged => {
+        this.userLogged = userLogged;
+      }
+    });
     this.getProjects();
   }
 
@@ -55,26 +62,38 @@ export class ProjectsEditComponent implements OnInit {
   }
 
   addProject(project: Project) {
-    this.projectService.addProject(project).subscribe(response => {
-      alert(response);
-      this.getProjects();
-      this.addForm.reset();
-    });
+    if(this.userLogged) {
+      this.projectService.addProject(project).subscribe(response => {
+        alert(response);
+        this.getProjects();
+        this.addForm.reset();
+      });
+    } else {
+      alert("Permiso denegado.");
+    }
   }
 
   updateProject(project: Project) {
-    this.projectService.updateProject(project).subscribe(response => {
-      alert(response);
-      this.getProjects();
-    });
-  }
-
-  deleteProject(id: number) {
-    if(confirm("¿Estás seguro de que quieres eliminar este Proyecto?")) {
-      this.projectService.deleteProject(id).subscribe(response => {
+    if(this.userLogged) {
+      this.projectService.updateProject(project).subscribe(response => {
         alert(response);
         this.getProjects();
       });
+    } else {
+      alert("Permiso denegado.");
+    }
+  }
+
+  deleteProject(id: number) {
+    if(this.userLogged) {
+      if(confirm("¿Estás seguro de que quieres eliminar este Proyecto?")) {
+        this.projectService.deleteProject(id).subscribe(response => {
+          alert(response);
+          this.getProjects();
+        });
+      }
+    } else {
+      alert("Permiso denegado.");
     }
   }
 

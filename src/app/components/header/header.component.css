@@ -6,6 +6,7 @@
     align-self: center;
     text-decoration: none;
     color: #f4f4f4;
+    cursor: pointer;
 }
 
 .link:hover {

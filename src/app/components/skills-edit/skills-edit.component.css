@@ -1,6 +1,6 @@
 .background {
     display: grid;
-    grid: 100vh / 100%;
+    grid: 100% / 100%;
     background: url("/assets/img/login-bg-dark.png") no-repeat;
     background-size: cover;
     background-attachment: fixed;
