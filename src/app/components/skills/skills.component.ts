@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SkillsService } from 'src/app/services/skills.service';
 import { Hardskill } from 'src/app/models/Hardskill';
 import { Softskill } from 'src/app/models/Softskill';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-skills',
@@ -10,12 +11,18 @@ import { Softskill } from 'src/app/models/Softskill';
 })
 export class SkillsComponent implements OnInit {
 
-  constructor(private skillsService:SkillsService) {}
+  constructor(private skillsService:SkillsService, private authService: AuthService) {}
 
   softskills: Softskill[] = [];
   hardskills: Hardskill[] = [];
+  userLogged: boolean = false;
 
   ngOnInit(): void {
+    this.authService.loggedIn.subscribe({
+      next: userLogged => {
+        this.userLogged = userLogged;
+      }
+    });
     this.getSoftskills();
     this.getHardskills();
   }

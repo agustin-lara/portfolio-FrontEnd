@@ -7,12 +7,10 @@ import { ExperienceEditComponent } from './components/experience-edit/experience
 import { SkillsEditComponent } from './components/skills-edit/skills-edit.component';
 import { ProjectsEditComponent } from './components/projects-edit/projects-edit.component';
 import { EducationEditComponent } from './components/education-edit/education-edit.component';
-import { RegisterComponent } from './components/register/register.component';
 
 const routes: Routes = [
   {path: '', component:PortfolioComponent},
   {path: 'login', component:LoginComponent},
-  {path: 'register', component:RegisterComponent},
   {path: 'experiencia', component:ExperienceEditComponent},
   {path: 'formacion', component:EducationEditComponent},
   {path: 'habilidades', component:SkillsEditComponent},

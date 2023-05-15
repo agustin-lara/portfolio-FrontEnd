@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Experience } from 'src/app/models/Experience';
+import { AuthService } from 'src/app/services/auth.service';
 import { ExperienceService } from 'src/app/services/experience.service';
 
 @Component({
@@ -12,7 +13,7 @@ export class ExperienceEditComponent implements OnInit {
 
   form!: FormGroup;
 
-  constructor(private experienceService: ExperienceService, private formBuilder: FormBuilder) {
+  constructor(private experienceService: ExperienceService, private formBuilder: FormBuilder, private authService: AuthService) {
     this.form = this.formBuilder.group({
       id:[''],
       nombre:['',[Validators.required, Validators.minLength(8)]],
@@ -24,8 +25,14 @@ export class ExperienceEditComponent implements OnInit {
 
   experiences: Experience[] | undefined;
   selectedExperience: Experience | undefined;
+  userLogged: boolean = false;
 
   ngOnInit(): void {
+    this.authService.loggedIn.subscribe({
+      next: userLogged => {
+        this.userLogged = userLogged;
+      }
+    });
     this.getExperiences();
   }
 
@@ -50,11 +57,15 @@ export class ExperienceEditComponent implements OnInit {
   }
 
   deleteExperience(id: number) {
-    if(confirm("¿Estás seguro de que quieres eliminar esta experiencia?")) {
-      this.experienceService.deleteExperience(id).subscribe(response => {
-        alert(response);
-        this.getExperiences();
-      });
+    if(this.userLogged) {
+      if(confirm("¿Estás seguro de que quieres eliminar esta experiencia?")) {
+        this.experienceService.deleteExperience(id).subscribe(response => {
+          alert(response);
+          this.getExperiences();
+        });
+      }
+    } else {
+      alert("Permiso denegado.");
     }
   }
 
@@ -78,11 +89,16 @@ export class ExperienceEditComponent implements OnInit {
   }
 
   onSubmit(experience: Experience) {
-    if(!this.selectedExperience) {
-      this.addExperience(experience);
+    if(this.userLogged) {
+      if(!this.selectedExperience) {
+        this.addExperience(experience);
+      } else {
+        this.updateExperience(experience);
+      }
     } else {
-      this.updateExperience(experience);
+      alert("Permiso denegado.");
     }
+    
   }
 
 }

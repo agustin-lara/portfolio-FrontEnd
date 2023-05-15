@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Hardskill } from 'src/app/models/Hardskill';
 import { Softskill } from 'src/app/models/Softskill';
+import { AuthService } from 'src/app/services/auth.service';
 import { SkillsService } from 'src/app/services/skills.service';
 
 @Component({
@@ -14,7 +15,7 @@ export class SkillsEditComponent implements OnInit {
   softForm!: FormGroup;
   hardForm!: FormGroup;
 
-  constructor(private skillsService:SkillsService, private formBuilder: FormBuilder) {
+  constructor(private skillsService:SkillsService, private formBuilder: FormBuilder, private authService: AuthService) {
     this.softForm = this.formBuilder.group({
       id:[''],
       nombre:['',[Validators.required, Validators.minLength(8)]],
@@ -35,8 +36,15 @@ export class SkillsEditComponent implements OnInit {
   hardskills: Hardskill[] | undefined;
   selectedHardskill: Hardskill | undefined;
 
+  userLogged: boolean = false;
+
 
   ngOnInit(): void {
+    this.authService.loggedIn.subscribe({
+      next: userLogged => {
+        this.userLogged = userLogged;
+      }
+    });
     this.getSoftskills();
     this.getHardskills();
     
@@ -64,12 +72,17 @@ export class SkillsEditComponent implements OnInit {
   }
 
   deleteSoftskill(id: number) {
-    if(confirm("¿Estás seguro de que quieres eliminar esta habilidad blanda?")) {
-      this.skillsService.deleteSoftskill(id).subscribe(response => {
-        alert(response);
-        this.getSoftskills();
-      });
+    if(this.userLogged) {
+      if(confirm("¿Estás seguro de que quieres eliminar esta habilidad blanda?")) {
+        this.skillsService.deleteSoftskill(id).subscribe(response => {
+          alert(response);
+          this.getSoftskills();
+        });
+      }
+    } else {
+      alert("Permiso denegado.");
     }
+    
   }
 
   selectSoftskill(id: number) {
@@ -95,11 +108,16 @@ export class SkillsEditComponent implements OnInit {
   }
 
   onSubmitSoftskill(softskill: Softskill) {
-    if(!this.selectedSoftskill) {
-      this.addSoftskill(softskill);
+    if(this.userLogged) {
+      if(!this.selectedSoftskill) {
+        this.addSoftskill(softskill);
+      } else {
+        this.updateSoftskill(softskill);
+      }
     } else {
-      this.updateSoftskill(softskill);
+      alert("Permiso denegado.");
     }
+    
   }
 
   // HARDSKILLS
@@ -124,12 +142,17 @@ export class SkillsEditComponent implements OnInit {
   }
 
   deleteHardskill(id: number) {
-    if(confirm("¿Estás seguro de que quieres eliminar esta habilidad dura?")) {
-      this.skillsService.deleteHardskill(id).subscribe(response => {
-        alert(response);
-        this.getHardskills();
-      });
+    if(this.userLogged) {
+      if(confirm("¿Estás seguro de que quieres eliminar esta habilidad dura?")) {
+        this.skillsService.deleteHardskill(id).subscribe(response => {
+          alert(response);
+          this.getHardskills();
+        });
+      }
+    } else {
+      alert("Permiso denegado.");
     }
+    
   }
 
   selectHardskill(id: number) {
@@ -151,10 +174,14 @@ export class SkillsEditComponent implements OnInit {
   }
 
   onSubmitHardskill(hardskill: Hardskill) {
-    if(!this.selectedHardskill) {
-      this.addHardskill(hardskill);
+    if(this.userLogged) {
+      if(!this.selectedHardskill) {
+        this.addHardskill(hardskill);
+      } else {
+        this.updateHardskill(hardskill);
+      }
     } else {
-      this.updateHardskill(hardskill);
+      alert("Permiso denegado.")
     }
   }
 

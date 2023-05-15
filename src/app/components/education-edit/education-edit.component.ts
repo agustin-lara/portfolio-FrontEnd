@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Education } from 'src/app/models/Education';
+import { AuthService } from 'src/app/services/auth.service';
 import { EducationService } from 'src/app/services/education.service';
 
 @Component({
@@ -12,7 +13,7 @@ export class EducationEditComponent implements OnInit {
 
   form!: FormGroup;
 
-  constructor(private educationService: EducationService, private formBuilder: FormBuilder) {
+  constructor(private educationService: EducationService, private formBuilder: FormBuilder, private authService: AuthService) {
     this.form = this.formBuilder.group({
       id:[''],
       nombre:['',[Validators.required, Validators.minLength(8)]],
@@ -23,8 +24,14 @@ export class EducationEditComponent implements OnInit {
 
   educations: Education[] | undefined;
   selectedEducation: Education | undefined;
+  userLogged: boolean = false;
 
   ngOnInit(): void {
+    this.authService.loggedIn.subscribe({
+      next: userLogged => {
+        this.userLogged = userLogged;
+      }
+    });
     this.getEducations();
   }
 
@@ -49,11 +56,15 @@ export class EducationEditComponent implements OnInit {
   }
 
   deleteEducation(id: number) {
-    if(confirm("¿Estás seguro de que quieres eliminar esta formación?")) {
-      this.educationService.deleteEducation(id).subscribe(response => {
-        alert(response);
-        this.getEducations();
-      });
+    if(this.userLogged) {
+      if(confirm("¿Estás seguro de que quieres eliminar esta formación?")) {
+        this.educationService.deleteEducation(id).subscribe(response => {
+          alert(response);
+          this.getEducations();
+        });
+      }
+    } else {
+      alert("Permiso denegado.");
     }
   }
 
@@ -76,10 +87,14 @@ export class EducationEditComponent implements OnInit {
   }
 
   onSubmit(education: Education) {
-    if(!this.selectedEducation) {
-      this.addEducation(education);
+    if(this.userLogged) {
+      if(!this.selectedEducation) {
+        this.addEducation(education);
+      } else {
+        this.updateEducation(education);
+      }
     } else {
-      this.updateEducation(education);
+      alert("Permiso denegado.");
     }
   }
 

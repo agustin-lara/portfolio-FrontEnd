@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Project } from 'src/app/models/Project';
+import { AuthService } from 'src/app/services/auth.service';
 import { ProjectsService } from 'src/app/services/projects.service';
 
 @Component({
@@ -9,11 +10,17 @@ import { ProjectsService } from 'src/app/services/projects.service';
 })
 export class ProjectsComponent implements OnInit {
 
-  constructor(private projectsService:ProjectsService) {}
+  constructor(private projectsService:ProjectsService, private authService: AuthService) {}
 
   projects: Project[] = [];
+  userLogged: boolean = false;
 
   ngOnInit(): void {
+    this.authService.loggedIn.subscribe({
+      next: userLogged => {
+        this.userLogged = userLogged;
+      }
+    });
     this.getProjects();
   }
 
