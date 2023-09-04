@@ -1,4 +1,50 @@
-<ng-container *ngIf="experiences.length; else skelet">
+<div class="container w-75 my-5">
+
+    <h2 class="la-dark la-bold mb-3"><span class="la-underline">Experiencia</span></h2>
+    <div *ngIf="userLogged"><a routerLink="/experiencia" class="btn btn-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="22" fill="#fff" class="align-self-center me-2" viewBox="0 0 16 16">
+        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+        </svg>Editar</a>
+    </div>
+
+    <ng-container *ngIf="experiences.length; else skelet">
+        <div *ngFor="let experience of experiences" class="row my-5">
+            <div class="col-md">
+                <p class="m-0">{{experience.nombre}}</p>
+                <p class="text-muted">{{experience.institucion}} | {{experience.fecha}}</p>
+            </div>
+            <div class="col-auto">
+                <img [src]="experience.imagen" alt="Imagen de Institución" class="rounded-2" width="56" height="56">
+            </div>
+        </div>
+    </ng-container>
+
+    <ng-template #skelet>
+        <div class="row my-5">
+            <div class="col-md">
+                <p class="text-skelet"></p>
+                <p class="mt-2 text-skelet"></p>
+                <p class="mt-2 w-25 text-skelet"></p>
+            </div>
+            <div class="col-auto">
+                <div class="img-skelet rounded-2"></div>
+            </div>
+        </div>
+        <div class="row my-5">
+            <div class="col-md">
+                <p class="text-skelet"></p>
+                <p class="mt-2 text-skelet"></p>
+                <p class="mt-2 w-25 text-skelet"></p>
+            </div>
+            <div class="col-auto">
+                <div class="img-skelet rounded-2"></div>
+            </div>
+        </div>
+    </ng-template>
+
+</div>
+
+<!-- <ng-container *ngIf="experiences.length; else skelet">
     <div class="container w-75 my-5">
             <h2 class="la-dark la-bold mb-3"><span class="la-underline">Experiencia</span></h2>
             <div *ngIf="userLogged"><a routerLink="/experiencia" class="btn btn-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="22" fill="#fff" class="align-self-center me-2" viewBox="0 0 16 16">
@@ -46,4 +92,4 @@
             </div>
         </div>
     </div>
-</ng-template>
+</ng-template> -->
